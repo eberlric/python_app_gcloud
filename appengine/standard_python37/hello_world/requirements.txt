@@ -1,1 +1,9 @@
-Flask==1.0.2
+flask
+mysql.connector
+base64
+sys
+PIL.Image
+matplotlib.pyplot as plt
+json
+os
+
