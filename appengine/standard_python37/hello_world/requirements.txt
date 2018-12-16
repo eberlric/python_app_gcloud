@@ -1,6 +1,4 @@
 flask
-mysql.connector
-base64
 sys
 PIL.Image
 matplotlib.pyplot
