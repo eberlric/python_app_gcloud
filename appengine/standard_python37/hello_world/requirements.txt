@@ -3,7 +3,7 @@ mysql.connector
 base64
 sys
 PIL.Image
-matplotlib.pyplot as plt
+matplotlib.pyplot
 json
 os
 
