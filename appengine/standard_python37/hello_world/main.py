@@ -4,49 +4,44 @@ from PIL import Image
 from io import BytesIO
 
 
-PEOPLE_FOLDER = os.path.join('static', 'people_photo')
-CSS_FOLDER = os.path.join('static', 'css')
+PEOPLE_FOLDER = os.path.join('static', 'Photos')
+CSS_FOLDER = os.path.join('static', 'CSS')
 
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
-app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
+app.config['UPLOAD_FOLDER'] = Photos
 app.config['UPLOAD_FOLDER2'] = CSS_FOLDER
 
 # Create some test data for our catalog in the form of a list of dictionaries.
-books = [
-    {'id': 0,
-     'title': 'A Fire Upon the Deep',
-     'author': 'Vernor Vinge',
-     'first_sentence': 'The coldsleep itself was dreamless.',
-     'year_published': '1992'},
-    {'id': 1,
-     'title': 'The Ones Who Walk Away From Omelas',
-     'author': 'Ursula K. Le Guin',
-     'first_sentence': 'With a clamor of bells that set the swallows soaring, the Festival of Summer came to the city Omelas, bright-towered by the sea.',
-     'published': '1973'},
-    {'id': 2,
-     'title': 'Dhalgren',
-     'author': 'Samuel R. Delany',
-     'first_sentence': 'to wound the autumnal city.',
-     'published': '1975'}
+data  = [{
+    "Antwort": "Erde",
+    "Frage": "Welcher Planet ist das",
+    "ID": 1,
+    "Option1": "Merkur",
+    "Option2": "Erde",
+    "Option3": "Uranus"},
+{
+    "Antwort": "Erde",
+    "Frage": "Welcher Planet ist das",
+    "ID": 2,
+    "Option1": "Merkur",
+    "Option2": "Erde",
+    "Option3": "Uranus"},
+{
+    "Antwort": "Erde",
+    "Frage": "Welcher Planet ist das",
+    "ID": 3,
+    "Option1": "Merkur",
+    "Option2": "Erde",
+    "Option3": "Uranus"},
 ]
 
-# get data from db
-db = mysql.connector.connect(user='root', password='CYWe!k@WC2CF§%~7',
-                              host='localhost',
-                              database='planeten')
+bild
+bild = os.path.join(app.config['UPLOAD_FOLDER'], 'image.jpg')
+CSS=os.path.join(app.config['UPLOAD_FOLDER2'], 'button2.css')
 
-sql1='select * from fragen'
-cursor=db.cursor(dictionary=True)
-cursor.execute(sql1)
-data=cursor.fetchall()
 
-print(data)
-
-full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'image.jpg')
-test10=os.path.join(app.config['UPLOAD_FOLDER2'], 'button2.css')
-print(test10)
 @app.route('/', methods=['GET'])
 def home():
     if 'id' in request.args:
@@ -54,7 +49,7 @@ def home():
         score = int(request.args['score'])
         return render_template('Richi.html', Frage=data[id]['Frage'], Antwort=data[id]['Antwort'],
                                Option1=data[id]['Option1'], Option2=data[id]['Option2'], Option3=data[id]['Option3'],
-                               Bild=full_filename, score=score, durchgang=id, CSS=test10)
+                               Bild=os.path.join(app.config['UPLOAD_FOLDER'], 'image' +str(id) + '.jpg'), score=score, durchgang=id, CSS=CSS)
     else:
         return render_template('Richi.html', Frage=data[0]['Frage'], Antwort=data[0]['Antwort'] ,Option1=data[0]['Option1'], Option2=data[0]['Option2'], Option3=data[0]['Option3'], Bild=full_filename, score=0, durchgang=0,CSS=test10)
 
