@@ -5,13 +5,13 @@ from io import BytesIO
 
 PEOPLE_FOLDER = os.path.join('static', 'photos')
 CSS_FOLDER = os.path.join('static', 'css')
-audio_FOLDER = os.path.join('static', 'audio')
+AUDIO_FOLDER = os.path.join('static', 'audio')
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
 app.config['UPLOAD_FOLDER2'] = CSS_FOLDER
-app.config['UPLOAD_FOLDER3'] = audio_FOLDER
+app.config['UPLOAD_FOLDER3'] = AUDIO_FOLDER
 
 # Create some test data for our catalog in the form of a list of dictionaries.
 data  = [{
