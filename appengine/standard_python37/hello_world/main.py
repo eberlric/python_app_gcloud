@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify, render_template
 
 
-PEOPLE_FOLDER = 'static\photos'
-CSS_FOLDER = 'static\css'
-AUDIO_FOLDER = 'static\audio'
+PEOPLE_FOLDER = 'static/photos'
+CSS_FOLDER = 'static/css'
+AUDIO_FOLDER = 'static/audio'
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -35,9 +35,9 @@ data  = [{
     "Option3": "Uranus"},
 ]
 
-full_filename = 'static\photos\image.jpg'
-stylesheet = 'static\css\button2.css'
-audiodatei = 'static\audio\audio.mp3'
+full_filename = 'static/photos/image.jpg'
+stylesheet = 'static/css/button2.css'
+audiodatei = 'static/audio/audio.mp3'
 
 
 @app.route('/', methods=['GET'])
