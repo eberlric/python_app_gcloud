@@ -35,22 +35,9 @@ data  = [{
     "Option3": "Uranus"},
 ]
 
-# get data from db
-db = mysql.connector.connect(user='root', password='CYWe!k@WC2CF§%~7',
-                              host='localhost',
-                              database='planeten')
-
-sql1='select * from fragen'
-cursor=db.cursor(dictionary=True)
-cursor.execute(sql1)
-#data=cursor.fetchall()
-
-print(data)
-
-bilder=[]
-full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'image.jpg')
-CSS=os.path.join(app.config['UPLOAD_FOLDER2'], 'button2.css')
-audio=os.path.join(app.config['UPLOAD_FOLDER3'], 'audio.mp3')
+full_filename = 'static\photos\image.jpg'
+CSS='static\css\button2.css'
+audio='static\audio\audio.mp3'
 
 
 @app.route('/', methods=['GET'])
@@ -60,7 +47,7 @@ def home():
         score = int(request.args['score'])
         return render_template('Richi.html', Frage=data[id]['Frage'], Antwort=data[id]['Antwort'],
                                Option1=data[id]['Option1'], Option2=data[id]['Option2'], Option3=data[id]['Option3'],
-                               Bild=os.path.join(app.config['UPLOAD_FOLDER'], 'image' +str(id) + '.jpg'), score=score, durchgang=id, CSS=CSS,audio=audio)
+                               Bild='static\photos\image' + str(id) + '.jpg', score=score, durchgang=id, CSS=CSS,audio=audio)
     else:
         return render_template('Richi.html', Frage=data[0]['Frage'], Antwort=data[0]['Antwort'] ,Option1=data[0]['Option1'], Option2=data[0]['Option2'],
                                Option3=data[0]['Option3'], Bild=full_filename, score=0, durchgang=0,CSS=CSS, audio=audio)
