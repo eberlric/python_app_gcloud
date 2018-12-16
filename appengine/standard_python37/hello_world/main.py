@@ -51,7 +51,7 @@ def home():
                                Option1=data[id]['Option1'], Option2=data[id]['Option2'], Option3=data[id]['Option3'],
                                Bild=os.path.join(app.config['UPLOAD_FOLDER'], 'image' +str(id) + '.jpg'), score=score, durchgang=id, CSS=CSS)
     else:
-        return render_template('Richi.html', Frage=data[0]['Frage'], Antwort=data[0]['Antwort'] ,Option1=data[0]['Option1'], Option2=data[0]['Option2'], Option3=data[0]['Option3'], Bild=full_filename, score=0, durchgang=0,CSS=test10)
+        return render_template('Richi.html', Frage=data[0]['Frage'], Antwort=data[0]['Antwort'] ,Option1=data[0]['Option1'], Option2=data[0]['Option2'], Option3=data[0]['Option3'], Bild=full_filename, score=0, durchgang=0,CSS=CSS)
 
 
 @app.route('/api/v1/resources/fragen/all', methods=['GET'])
@@ -87,7 +87,7 @@ def api_id():
 def final():
     if 'score' in request.args:
         score = int(request.args['score'])
-        return render_template('final.html', score=score,CSS=test10)
+        return render_template('final.html', score=score,CSS=CSS)
 
     else:
         return "Error: No score field provided. Please specify a score."
