@@ -1,6 +1,2 @@
 flask
-PIL.Image
-matplotlib.pyplot
-json
 os
-
