@@ -3,15 +3,15 @@ from flask.helpers import send_file
 from PIL import Image
 from io import BytesIO
 
-
-PEOPLE_FOLDER = os.path.join('static', 'Photos')
-CSS_FOLDER = os.path.join('static', 'CSS')
-
+PEOPLE_FOLDER = os.path.join('static', 'photos')
+CSS_FOLDER = os.path.join('static', 'css')
+audio_FOLDER = os.path.join('static', 'audio')
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
-app.config['UPLOAD_FOLDER'] = Photos
+app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
 app.config['UPLOAD_FOLDER2'] = CSS_FOLDER
+app.config['UPLOAD_FOLDER3'] = audio_FOLDER
 
 # Create some test data for our catalog in the form of a list of dictionaries.
 data  = [{
@@ -37,10 +37,11 @@ data  = [{
     "Option3": "Uranus"},
 ]
 
-bild
-bild = os.path.join(app.config['UPLOAD_FOLDER'], 'image.jpg')
-CSS=os.path.join(app.config['UPLOAD_FOLDER2'], 'button2.css')
 
+full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'image.jpg')
+CSS=os.path.join(app.config['UPLOAD_FOLDER2'], 'button2.css')
+audio=os.path.join(app.config['UPLOAD_FOLDER3'], 'audio.mp3')
+print(CSS)
 
 @app.route('/', methods=['GET'])
 def home():
@@ -49,11 +50,11 @@ def home():
         score = int(request.args['score'])
         return render_template('Richi.html', Frage=data[id]['Frage'], Antwort=data[id]['Antwort'],
                                Option1=data[id]['Option1'], Option2=data[id]['Option2'], Option3=data[id]['Option3'],
-                               Bild=os.path.join(app.config['UPLOAD_FOLDER'], 'image' +str(id) + '.jpg'), score=score, durchgang=id, CSS=CSS)
+                               Bild=os.path.join(app.config['UPLOAD_FOLDER'], 'image' +str(id) + '.jpg'), score=score, durchgang=id, CSS=CSS,audio=audio)
     else:
-        return render_template('Richi.html', Frage=data[0]['Frage'], Antwort=data[0]['Antwort'] ,Option1=data[0]['Option1'], Option2=data[0]['Option2'], Option3=data[0]['Option3'], Bild=full_filename, score=0, durchgang=0,CSS=CSS)
-
-
+        return render_template('Richi.html', Frage=data[0]['Frage'], Antwort=data[0]['Antwort'] ,Option1=data[0]['Option1'], Option2=data[0]['Option2'],
+                               Option3=data[0]['Option3'], Bild=full_filename, score=0, durchgang=0,CSS=CSS, audio=audio)
+#C:/Users/Richi/PycharmProjects/test/api/
 @app.route('/api/v1/resources/fragen/all', methods=['GET'])
 def api_all():
     return jsonify(data)
@@ -82,12 +83,20 @@ def api_id():
     # Python dictionaries to the JSON format.
     return jsonify(results)
 
+@app.route('/api/v1/resources/write', methods=['POST'])
+def write():
+    if 'result' in request.args:
+        print(bool(request.args['result']))
+
+    else:
+        return "Error: No id field provided. Please specify an id."
+
 
 @app.route('/final', methods=['GET'])
 def final():
     if 'score' in request.args:
         score = int(request.args['score'])
-        return render_template('final.html', score=score,CSS=CSS)
+        return render_template('final.html', score=score,CSS=CSS,audio=audio)
 
     else:
         return "Error: No score field provided. Please specify a score."
