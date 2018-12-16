@@ -5,7 +5,7 @@ PEOPLE_FOLDER = 'static\photos'
 CSS_FOLDER = 'static\css'
 AUDIO_FOLDER = 'static\audio'
 
-app = flask.Flask(__name__)
+app = Flask(__name__)
 app.config["DEBUG"] = True
 app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
 app.config['UPLOAD_FOLDER2'] = CSS_FOLDER
