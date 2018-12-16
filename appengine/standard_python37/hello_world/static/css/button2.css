@@ -1,4 +1,4 @@
-	.button1 {
+	.button {
 		background-color: #4CAF50; /* Green */
 		border-radius: 8px;
 		border: none;
@@ -15,9 +15,9 @@
 		vertical-align: middle
 	}
 
-	.button1:hover {background-color: #3e8e41}
+	.button:hover {background-color: #3e8e41}
 
-	.button1:active {
+	.button:active {
 	  background-color: #3e8e41;
 	  box-shadow: 0 5px #666;
 	  transform: translateY(4px);
@@ -57,3 +57,4 @@
 		margin: auto;
 		width: 50%;
 	}
+
