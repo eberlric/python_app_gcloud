@@ -93,7 +93,7 @@ def write():
 def final():
     if 'score' in request.args:
         score = int(request.args['score'])
-        return render_template('final.html', score=score,CSS=CSS,audio=audio)
+        return render_template('final.html', score=score,CSS=stylesheet,audio=audiodatei)
 
     else:
         return "Error: No score field provided. Please specify a score."
