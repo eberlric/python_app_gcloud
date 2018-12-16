@@ -1,3 +1,8 @@
+from flask import request, jsonify, render_template
+from flask.helpers import send_file
+from matplotlib.pyplot import Image
+from io import BytesIO
+
 PEOPLE_FOLDER = os.path.join('static', 'photos')
 CSS_FOLDER = os.path.join('static', 'css')
 AUDIO_FOLDER = os.path.join('static', 'audio')
