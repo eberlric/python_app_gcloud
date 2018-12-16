@@ -1,8 +1,3 @@
-from flask import request, jsonify, render_template
-from flask.helpers import send_file
-from PIL import Image
-from io import BytesIO
-
 PEOPLE_FOLDER = os.path.join('static', 'photos')
 CSS_FOLDER = os.path.join('static', 'css')
 AUDIO_FOLDER = os.path.join('static', 'audio')
@@ -37,11 +32,23 @@ data  = [{
     "Option3": "Uranus"},
 ]
 
+# get data from db
+db = mysql.connector.connect(user='root', password='CYWe!k@WC2CF§%~7',
+                              host='localhost',
+                              database='planeten')
 
+sql1='select * from fragen'
+cursor=db.cursor(dictionary=True)
+cursor.execute(sql1)
+#data=cursor.fetchall()
+
+print(data)
+
+bilder=[]
 full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'image.jpg')
 CSS=os.path.join(app.config['UPLOAD_FOLDER2'], 'button2.css')
 audio=os.path.join(app.config['UPLOAD_FOLDER3'], 'audio.mp3')
-print(CSS)
+
 
 @app.route('/', methods=['GET'])
 def home():
