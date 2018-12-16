@@ -1,9 +1,9 @@
 from flask import request, jsonify, render_template
 
 
-PEOPLE_FOLDER = 'static\photos\'
-CSS_FOLDER = 'static\css\'
-AUDIO_FOLDER = 'static\audio\'
+PEOPLE_FOLDER = 'static\photos'
+CSS_FOLDER = 'static\css'
+AUDIO_FOLDER = 'static\audio'
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
