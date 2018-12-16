@@ -1,4 +1,4 @@
-from flask import request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template
 
 
 PEOPLE_FOLDER = 'static\photos'
