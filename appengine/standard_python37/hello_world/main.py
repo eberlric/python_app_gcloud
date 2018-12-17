@@ -98,4 +98,4 @@ def final():
     else:
         return "Error: No score field provided. Please specify a score."
 
-app.run(host='127.0.0.1', port=5000, debug=True)
+app.run()
